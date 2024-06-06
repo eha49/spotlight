@@ -36,32 +36,36 @@ ul {
 .card {
   --border-width: 6px;
   --alpha: 0.15;
-  --spotlight: radial-gradient(
-    circle at calc(var(--x) * 1px) calc(var(--y) * 1px),
-    hsl(0deg 0% 100% / var(--alpha)),
-    transparent 150px
-  );
+  --bg: hsl(0deg 0% 10%);
   width: 200px;
   aspect-ratio: 4 / 3;
   color: hsl(0deg 0% 100%);
-  background: var(--spotlight), hsl(0deg 0% 10%);
   font-weight: bold;
   font-size: 1.5rem;
-  background-attachment: fixed;
   position: relative;
 }
+
 .card::before {
-  --alpha: 0.5;
+  --alpha: 0.7;
   content: "";
   position: absolute;
   inset: 0;
-  background: var(--spotlight);
-  background-attachment: fixed;
   mask: linear-gradient(#fff, #fff) 0 0 / 100% var(--border-width),
     linear-gradient(#fff, #fff) 100% 0 / var(--border-width) 100%,
     linear-gradient(#fff, #fff) 0 100% / 100% var(--border-width),
     linear-gradient(#fff, #fff) 0 0 / var(--border-width) 100%;
   mask-repeat: no-repeat;
+}
+
+.card,
+.card::before {
+  background: radial-gradient(
+      circle at calc(var(--x) * 1px) calc(var(--y) * 1px),
+      hsl(0deg 0% 100% / var(--alpha)),
+      transparent 150px
+    ),
+    var(--bg);
+  background-attachment: fixed;
 }
 
 .card span {
