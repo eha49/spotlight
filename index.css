@@ -35,7 +35,7 @@ ul {
 
 .card {
   --border-width: 6px;
-  --alpha: 0.15;
+  --alpha: calc(var(--active, 0) * 0.15);
   --bg: hsl(0deg 0% 10%);
   width: 200px;
   aspect-ratio: 4 / 3;
@@ -43,6 +43,10 @@ ul {
   font-weight: bold;
   font-size: 1.5rem;
   position: relative;
+}
+
+.card:is(:hover, :focus-within) {
+  --active: 1;
 }
 
 .card::before {
@@ -62,7 +66,7 @@ ul {
   background: radial-gradient(
       circle at calc(var(--x) * 1px) calc(var(--y) * 1px),
       hsl(0deg 0% 100% / var(--alpha)),
-      transparent 150px
+      transparent 100px
     ),
     var(--bg);
   background-attachment: fixed;
